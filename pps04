@@ -1,0 +1,81 @@
+#include <iostream>
+using namespace std;
+
+class employee
+{
+protected:
+    int e_no;
+    string desig;
+    string name;
+
+public:
+    void get()
+    {
+        cout << "enter employee no: ";
+        cin >> e_no;
+        cout << "enter employee name: ";
+        cin >> name;
+        cout << "enter designation : ";
+        cin >> desig;
+    }
+    void print()
+    {
+        cout << "Emp number : " << e_no;
+        cout << "\nEmp Name : " << name;
+        cout << "\nDesignation : " << desig;
+    }
+};
+
+class salary : private employee
+{
+protected:
+    int hra;
+    int da;
+    int pf;
+    void get_1()
+    {
+        employee::get();
+        cout << "enter hra,da,pf\n";
+        cin >> hra;
+        cin >> da;
+        cin >> pf;
+    }
+    void print_1()
+    {
+        employee::print();
+        cout << "\nhra: " << hra;
+        cout << "\nda: " << da;
+        cout << "\npf: " << pf;
+    }
+};
+
+class bank_details : private salary
+{
+protected:
+    string b_name;
+    int acc_no;
+
+public:
+    void get_2()
+    {
+        salary::get_1();
+        cout << "Enter Bank Name: ";
+        cin >> b_name;
+        cout << "Enter account number: ";
+        cin >> acc_no;
+    }
+
+    void print_2()
+    {
+        salary::print_1();
+        cout << "\nBank Name: " << b_name;
+        cout << "\nAccount Number: " << acc_no;
+    }
+};
+
+int main()
+{
+    bank_details b;
+    b.get_2();
+    b.print_2();
+}
