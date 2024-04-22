@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+
+class Student
+{
+private:
+    int id;
+    string name;
+
+protected:
+    void getstu()
+    {
+        cout << "Enter the ID: ";
+        cin >> id;
+        cout << "Enter Name: ";
+        cin >> name;
+    }
+    void putstu()
+    {
+        cout << "\nID: " << id;
+        cout << "\nName: " << name;
+        
+    }
+};
+
+class Marks : public Student
+{
+protected:
+    int m1, m2, m3;
+
+
+    void getmarks()
+    {
+        cout << "Enter mark m1: ";
+        cin >> m1;
+        if(m1<40){
+            cout<<"\nError\n";
+            exit(0);
+        }
+        cout << "Enter mark m2: ";
+        cin >> m2;
+        cout << "Enter mark m3: ";
+        cin >> m3;
+    }
+
+    void putmarks()
+    {
+        cout << "\nMark1: " << m1;
+        cout << "\nMark2: " << m2;
+        cout << "\nMark3: " << m3;
+    }
+};
+
+class Result : public Marks
+{
+private:
+    int total;
+    int average;
+
+public:
+    void show()
+    {
+        Student::getstu();
+
+        Marks::getmarks();
+
+        total = m1 + m2 + m3;
+        average = total / 3;
+        Student::putstu();
+        Marks::putmarks();
+        cout << "\nThe total is: " << total;
+        cout << "\nThe average is: " << average;
+    }
+};
+
+int main()
+{
+    Result r;
+    r.show();
+}
