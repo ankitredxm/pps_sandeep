@@ -1,0 +1,50 @@
+#include<iostream>
+using namespace std;
+class DM;
+class DB{
+    float feet;
+    float inches;
+    public:
+    void get_db(){
+        cout<<"Enter the value in feet and inches:\n";
+        cout<<"Enter the feet value: ";
+        cin>>feet;
+        feet*=0.3;
+        cout<<"Enter the inches value: ";
+        cin>>inches;
+        inches*=(2.54/100);
+    }
+    friend void add(DB&,DM&);
+};
+class DM{
+    float meter;
+    float centimeter;
+    float result;
+    public:
+    void get_dm(){
+        cout<<"Enter the value in meter and centimeters:\n";
+        cout<<"Enter the meter value: ";
+        cin>>meter;
+        cout<<"Enter the centimeter value: ";
+        cin>>centimeter;
+        centimeter*=0.01;
+    }
+     friend void add(DB&,DM&);
+
+
+};
+
+void add(DB& a,DM& b){
+    DM temp;                //storing the addition in DM class
+    temp.result=a.feet+a.inches+b.centimeter+b.meter;
+    cout<<"The summed value in meter is: "<<temp.result;
+}
+
+
+int main(){
+    DM m;
+    m.get_dm();
+    DB b;
+    b.get_db();
+    add(b,m);
+}
